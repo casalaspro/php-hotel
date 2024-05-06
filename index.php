@@ -51,9 +51,86 @@ $hotels = [
 ];
 
 ?>
+  <navbar>
+    <div class="container">
+      <h1>Hotels</h1>
+      <form action="./index.php" method="get">
+        <div class="form-check">
+          <input class="form-check-input" name="park" type="checkbox" value="1" id="parkPresence">
+          <label class="form-check-label" for="parkPresence">
+            Parking presence
+          </label>
+        </div>
+        
+        <button class="button">Find</button>
+      </form>
+    </div>
 
-  <h1>Hotels</h1>
+  
+  </navbar>
   <hr>
+
+  <?php 
+  if(isset($_GET['park'])){
+    $filteredParkHotels = array_filter($hotels, "getParkPresence");
+    echo "<pre>";
+    var_dump($filteredParkHotels);
+    echo "</pre>";
+  
+
+    ?>
+    <h2>Hotels with parking</h2>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Description</th>
+          <th>Parking inside the hotel</th>
+          <th>Vote</th>
+          <th>Distance from city center</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        
+        <?php
+          foreach($filteredParkHotels as &$hotel){
+            $name = $hotel['name'];
+            $description = $hotel['description'];
+            $parking = $hotel['parking'];
+            $vote = $hotel['vote'];
+            $distance = $hotel['distance_to_center'];
+            // echo "<pre>";
+            // var_dump($hotel);
+            //  echo "</pre>";
+
+            
+        ?>
+
+        <tr>
+          <th><?php echo $name; ?></th>
+          <td><?php echo $description ?></td>
+          <td><?php echo $parking ?></td>
+          <td><?php echo $vote ?></td>
+          <td><?php echo $distance . " " . 'km' ?></td>
+        </tr>
+
+        <?php };}; ?>
+        
+      </tbody>
+    </table>
+
+    <?php
+    
+
+  function getParkPresence($hotel){
+    if($hotel['parking']==true){
+      return $hotel;
+    }
+  };
+
+
+  ?>
 
   
 
