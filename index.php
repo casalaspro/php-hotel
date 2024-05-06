@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
   <title>PHP Hotels</title>
 </head>
 <body>
@@ -54,32 +55,53 @@ $hotels = [
   <h1>Hotels</h1>
   <hr>
 
-  <?php
-  for($i = 0; $i < count($hotels); $i++){
-    $hotel = $hotels[$i];
-    $name = $hotel['name'];
-    $description = $hotel['description'];
-    $parking = $hotel['parking'];
-    $vote = $hotel['vote'];
-    $distance = $hotel['distance_to_center'];
-    ?>
-
-    <div class="card hotel">
-      <h2><?php echo  $name; ?></h2>
-      <p><strong>Description: </strong><?php echo $description ?></p>
-      <p><strong>Parking inside the hotel: </strong><?php echo $parking ?></p>
-      <p><strong>Vote: </strong><?php echo $vote ?></p>
-      <p><strong>Distance from city center: </strong><?php echo $distance ?></p>
-    </div>
-    
-    <?php
-
-    // echo $name;
-    // echo '<br>';
-  };
-  ?>
-
   
+
+  <section class="hotels">
+
+    <div class="container">
+
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Description</th>
+          <th>Parking inside the hotel</th>
+          <th>Vote</th>
+          <th>Distance from city center</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        
+        <?php
+          for($i = 0; $i < count($hotels); $i++){
+            $hotel = $hotels[$i];
+            $name = $hotel['name'];
+            $description = $hotel['description'];
+            $parking = $hotel['parking'];
+            $vote = $hotel['vote'];
+            $distance = $hotel['distance_to_center'];
+        ?>
+
+        <tr>
+          <th><?php echo  $name; ?></th>
+          <td><?php echo $description ?></td>
+          <td><?php echo $parking ?></td>
+          <td><?php echo $vote ?></td>
+          <td><?php echo $distance . " " . 'km' ?></td>
+        </tr>
+        <?php }; ?>
+        
+      </tbody>
+    </table>
+    </div>
+  </section>
+    
+
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
 </body>
 </html>
 
