@@ -70,56 +70,55 @@ $hotels = [
   </navbar>
   <hr>
 
-  <?php 
-  if(isset($_GET['park'])){
-    $filteredParkHotels = array_filter($hotels, "getParkPresence");
-    echo "<pre>";
-    var_dump($filteredParkHotels);
-    echo "</pre>";
-  
-
+    <?php 
+    if(isset($_GET['park'])){
+      $filteredParkHotels = array_filter($hotels, "getParkPresence");
+      echo "<pre>";
+      var_dump($filteredParkHotels);
+      echo "</pre>";
     ?>
-    <h2>Hotels with parking</h2>
-    <table class="table table-striped">
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Description</th>
-          <th>Parking inside the hotel</th>
-          <th>Vote</th>
-          <th>Distance from city center</th>
-        </tr>
-      </thead>
+      <div class="container">
+        <h2>Hotels with parking</h2>
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Description</th>
+              <th>Parking inside the hotel</th>
+              <th>Vote</th>
+              <th>Distance from city center</th>
+            </tr>
+          </thead>
 
-      <tbody>
-        
-        <?php
-          foreach($filteredParkHotels as &$hotel){
-            $name = $hotel['name'];
-            $description = $hotel['description'];
-            $parking = $hotel['parking'];
-            $vote = $hotel['vote'];
-            $distance = $hotel['distance_to_center'];
-            // echo "<pre>";
-            // var_dump($hotel);
-            //  echo "</pre>";
+          <tbody>
 
-            
-        ?>
+            <?php
+              foreach($filteredParkHotels as &$hotel){
+                $name = $hotel['name'];
+                $description = $hotel['description'];
+                $parking = $hotel['parking'];
+                $vote = $hotel['vote'];
+                $distance = $hotel['distance_to_center'];
+                // echo "<pre>";
+                // var_dump($hotel);
+                //  echo "</pre>";
 
-        <tr>
-          <th><?php echo $name; ?></th>
-          <td><?php echo $description ?></td>
-          <td><?php echo $parking ?></td>
-          <td><?php echo $vote ?></td>
-          <td><?php echo $distance . " " . 'km' ?></td>
-        </tr>
 
-        <?php };}; ?>
-        
-      </tbody>
-    </table>
+            ?>
 
+            <tr>
+              <th><?php echo $name; ?></th>
+              <td><?php echo $description ?></td>
+              <td><?php echo $parking ?></td>
+              <td><?php echo $vote ?></td>
+              <td><?php echo $distance . " " . 'km' ?></td>
+            </tr>
+
+            <?php };}; ?>
+                                 
+          </tbody>
+        </table>
+      </div>
     <?php
     
 
